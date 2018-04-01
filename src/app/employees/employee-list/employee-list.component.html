@@ -3,7 +3,7 @@
   <th>Name</th>
   <th>AppCode</th>
   <th>Details</th>
-  
+
   <tr *ngFor="let employee of employeeService.employeeList">
 
     <!--Get the syntax from employee.model.ts-->
@@ -13,7 +13,7 @@
       <a class="btn" (click)="showForEdit(employee)">
         <i class="fa fa-pencil-square-o">Edit</i>
       </a>
-      <a class="btn text-danger">
+      <a class="btn text-danger" (click)="onDelete(employee.EmployeeID)">
           <i class="fa fa-trash-o">Delete</i>
         </a>
     </td>
