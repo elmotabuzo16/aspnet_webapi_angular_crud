@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EmployeeService } from '../shared/employee.service';
+import { Employee } from '../shared/employee.model';
 
 @Component({
   selector: 'app-employee-list',
@@ -13,6 +14,10 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit() {
     this.employeeService.getEmployeeList();
+  }
+
+  showForEdit(emp : Employee) {
+    this.employeeService.selectedEmployee = Object.assign({}, emp);
   }
 
 }

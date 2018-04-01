@@ -6,7 +6,7 @@
     <td>{{ employee.LastName }}, {{ employee.FirstName }}</td>
     <td>{{ employee.EmpCode }}</td>
     <td>
-      <a class="btn">
+      <a class="btn" (click)="showForEdit(employee)">
         <i class="fa fa-pencil-square-o">Edit</i>
       </a>
       <a class="btn text-danger">

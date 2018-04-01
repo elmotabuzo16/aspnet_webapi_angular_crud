@@ -26,20 +26,52 @@ export class EmployeeComponent implements OnInit {
     //reset the models
     this.employeeService.selectedEmployee = {
       EmployeeID : null,
-      FirstName : "",
-      LastName : "",
-      EmpCode : "",
-      Position : "",
-      Office : "",      
+      FirstName : '',
+      LastName : '',
+      EmpCode : '',
+      Position : '',
+      Office : '',      
     }
   }
 
+  /*
   onSubmit(form : NgForm) {
-    this.employeeService.postEmployee(form.value)
+    if (form.value.EmployeeID == null) {
+      this.employeeService.postEmployee(form.value)
       .subscribe( data => {
         this.resetForm(form);
+        this.employeeService.getEmployeeList();
         this.toastr.success('New Record Added Successfully', 'Employee Register');
-      } )
-  }
+      })
+    }
+    else {
+      this.employeeService.putEmployee(form.value.EmployeeID, form.value)
+      .subscribe( data => {
+        this.resetForm(form);
+        this.employeeService.getEmployeeList();
+        this.toastr.info('Record Updated Successfully!', 'Employee Register');
+     })
+    }
 
+  }
+  */
+
+ onSubmit(form: NgForm) {
+  if (form.value.EmployeeID == null) {
+    this.employeeService.postEmployee(form.value)
+      .subscribe(data => {
+        this.resetForm(form);
+        this.employeeService.getEmployeeList();
+        this.toastr.success('New Record Added Succcessfully', 'Employee Register');
+      })
+  }
+  else {
+    this.employeeService.putEmployee(form.value.EmployeeID, form.value)
+    .subscribe(data => {
+      this.resetForm(form);
+      this.employeeService.getEmployeeList();
+      this.toastr.info('Record Updated Successfully!', 'Employee Register');
+    });
+  }
+}
 }

@@ -21,10 +21,18 @@ export class EmployeeService {
     var requestOptions = 
       new RequestOptions({method: RequestMethod.Post, headers : headerOptions});
 
-    return this
-      .http
+    return this.http
       .post('http://localhost:57842/api/Employees', body, requestOptions)
       .map(x => x.json());
+  }
+
+  putEmployee(id, emp) {
+    var body = JSON.stringify(emp);
+    var headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    var requestOptions = new RequestOptions({ method: RequestMethod.Put, headers: headerOptions });
+    return this.http.put('http://localhost:57842/api/Employees/' + id,
+      body,
+      requestOptions).map(res => res.json());
   }
 
   getEmployeeList() {
