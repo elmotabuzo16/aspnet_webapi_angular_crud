@@ -38,7 +38,7 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.postEmployee(form.value)
       .subscribe( data => {
         this.resetForm(form);
-        this.toastr.success('New Record Added Successfully', 'Employee Register')
+        this.toastr.success('New Record Added Successfully', 'Employee Register');
       } )
   }
 

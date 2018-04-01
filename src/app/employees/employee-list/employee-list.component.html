@@ -1,3 +1,17 @@
-<p>
-  employee-list works!
-</p>
+<table class="table table-sm table-hover">
+  <!--Get the syntax of employeeService.employeeList from employee-list.component.ts-->
+  <tr *ngFor="let employee of employeeService.employeeList">
+
+    <!--Get the syntax from employee.model.ts-->
+    <td>{{ employee.LastName }}, {{ employee.FirstName }}</td>
+    <td>{{ employee.EmpCode }}</td>
+    <td>
+      <a class="btn">
+        <i class="fa fa-pencil-square-o">Edit</i>
+      </a>
+      <a class="btn text-danger">
+          <i class="fa fa-trash-o">Delete</i>
+        </a>
+    </td>
+  </tr>
+</table>

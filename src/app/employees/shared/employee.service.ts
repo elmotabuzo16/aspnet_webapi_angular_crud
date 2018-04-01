@@ -10,6 +10,9 @@ import { Employee } from './employee.model';
 export class EmployeeService {
 
   selectedEmployee: Employee;
+
+  employeeList : Employee[];
+
   constructor(private http : Http) { }
 
   postEmployee(emp : Employee) {
@@ -22,6 +25,16 @@ export class EmployeeService {
       .http
       .post('http://localhost:57842/api/Employees', body, requestOptions)
       .map(x => x.json());
+  }
+
+  getEmployeeList() {
+    // This will have an array of employees
+    this.http.get('http://localhost:57842/api/Employees')
+      .map((data : Response) => {
+        return data.json() as Employee[];
+      }).toPromise().then(x => {
+        this.employeeList = x;
+      })
   }
 
 }
