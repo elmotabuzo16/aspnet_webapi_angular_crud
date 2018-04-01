@@ -56,22 +56,23 @@ export class EmployeeComponent implements OnInit {
   }
   */
 
- onSubmit(form: NgForm) {
-  if (form.value.EmployeeID == null) {
-    this.employeeService.postEmployee(form.value)
+  onSubmit(form: NgForm) {
+    if (form.value.EmployeeID == null) {
+      this.employeeService.postEmployee(form.value)
+        .subscribe(data => {
+          this.resetForm(form);
+          this.employeeService.getEmployeeList();
+          this.toastr.success('New Record Added Succcessfully', 'Employee Register');
+        })
+    }
+    else {
+      this.employeeService.putEmployee(form.value.EmployeeID, form.value)
       .subscribe(data => {
         this.resetForm(form);
         this.employeeService.getEmployeeList();
-        this.toastr.success('New Record Added Succcessfully', 'Employee Register');
-      })
-  }
-  else {
-    this.employeeService.putEmployee(form.value.EmployeeID, form.value)
-    .subscribe(data => {
-      this.resetForm(form);
-      this.employeeService.getEmployeeList();
-      this.toastr.info('Record Updated Successfully!', 'Employee Register');
-    });
-  }
-}
+        this.toastr.info('Record Updated Successfully!', 'Employee Register');
+      });
+    }
+  } 
+  
 }
